@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">পফরম্যাট বাছুন</string>
+<string name="m_share_format_image">পিকচার</string>
+<string name="m_share_format_video">ভিডিও</string>
+<string name="m_generating_tip">উৎপাদিত ভিডিও</string>
+<string name="m_generate_video_fail">ভিডিও জেনারেট করতে ব্যর্থ</string>
+<string name="m_generating_gif_tip">উৎপাদিত Gif</string>
+<string name="m_generate_gif_fail">Gif জেনারেট করতে ব্যর্থ</string>
+<string name="m_share_limit">300\'র বেশী ফাইল শেয়ার করা যাবে না.</string>
+<string name="m_demo_off">ডেমো বন্ধ</string>
+<string name="m_vertical_demo">উল্লম্ব ডেমো</string>
+<string name="m_horizontal_demo">অনুভূমিক ডেমো</string>
+<string name="m_storage_not_enough">স্টোরেজে যথেষ্ট জায়গা নেই</string>
+<string name="m_saving_image">এখানে ছবি সংরক্ষণ করুন <xliff:g id="album_name">%1$s</xliff:g> \u2026</string>
+<string name="m_drm_protected_warning1">কণ্টেণ্টটি কপি করা যাবে না</string>
+<string name="m_drm_protected_warning2">ফোনে এটি দেখতে</string>
+<string name="m_wfd_protected_warning">অনুগ্রহ করে ওয়্যারলেস ডিসপ্লে সংযোগ বিচ্ছিন্ন করুন</string>
+<string name="m_smb_protected_warning">অনুগ্রহ করে স্মার্টবুক থেকে আপনার ফোন আনপ্লাগ করুন</string>
+<string name="m_hdmi_protected_warning">অনুগ্রহ করে HDMI এর সঙ্গে সংযোগ বিচ্ছিন্ন করুন</string>
+<string name="m_dc_open">"DynC ON"</string>
+<string name="m_dc_close">"DynC OFF"</string>
+</resources>

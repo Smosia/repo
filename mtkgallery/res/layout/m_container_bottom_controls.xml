@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container_bottom_controls"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <!-- gulincheng dwlje-1466 20151117 start-->
+        <TextView
+                 android:id="@+id/bottom_footer"
+                 android:layout_width="@dimen/navigation_bar_height"
+                 android:layout_height="@dimen/navigation_bar_height"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentLeft="true"
+                 android:visibility="visible" />
+    
+        <ImageButton
+                android:id="@+id/m_photopage_bottom_control_conshots"
+                android:src="@drawable/m_ic_conshots_detail"
+                android:background="@drawable/m_bottom_button_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_above="@id/bottom_footer"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:visibility="gone"/>
+
+        <ImageButton
+                android:id="@+id/m_photopage_bottom_control_motion"
+                android:src="@drawable/m_ic_motion_detail"
+                android:background="@drawable/m_bottom_button_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/bottom_footer"
+                android:layout_alignParentLeft="true"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:visibility="gone"/>
+
+         <!-- gulincheng dwlje-1466 20151117 end-->
+
+</RelativeLayout>

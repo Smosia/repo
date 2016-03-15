@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="com.android.gallery3d.ui.SlotView.SlotRenderer" x="72" y="519">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.AlbumSetSlotRenderer" x="-558" y="29">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView"
+            endpointName="mSlotView" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.AlbumSetSlotRenderer.LabelSpec"
+            endpointName="mLabelSpec" kind="Simple"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.Spec" x="441" y="184">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class
+        name="com.android.gallery3d.ui.AlbumSetSlotRenderer.MyCacheListener"
+        x="-501" y="-62">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.AlbumSetSlotRenderer"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.SlotEntry" x="-215" y="333">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.IntegerAnimation"
+        x="958" y="308">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.android.gallery3d.app.AlbumSetPage.MyDetailsSource"
+        x="-432" y="989">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.AlbumSetSlotRenderer"/>
+    </Class>
+    <Class
+        name="com.android.gallery3d.app.AlbumSetPage.MyLoadingListener"
+        x="103" y="925">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.android.gallery3d.app.AlbumSetPage"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.Listener" x="427" y="376">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.SimpleListener"
+        x="416" y="544">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.android.gallery3d.ui.SlotView.Listener"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.RisingAnimation"
+        x="641" y="170">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.android.gallery3d.ui.SlotView.SlotAnimation"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView" x="17" y="37">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.SlotAnimation"
+            endpointName="mAnimation" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.Spec"
+            endpointName="mBackUpSpec" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.SlotRenderer"
+            endpointName="mRenderer" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.SlotEntry"
+            endpointName="mSlotArray" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.Listener"
+            endpointName="mListener" kind="Simple"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.SlotRenderer"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.MyGestureListener"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.IntegerAnimation"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.Listener"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.DefaultLayout"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.SlotAnimation"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.ScatteringAnimation"
+        x="367" y="12">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.android.gallery3d.ui.SlotView.SlotAnimation"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.DefaultLayout"
+        x="678" y="263">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.IntegerAnimation"
+            endpointName="mHorizontalPadding" kind="Simple">
+            <Point x="994" y="467"/>
+        </Association>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.IntegerAnimation"
+            endpointName="mVerticalPadding" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView.Spec"
+            endpointName="mSpec" kind="Simple"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.SlotRenderer"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.IntegerAnimation"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.MyGestureListener"
+        x="717" y="558">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView.Listener"/>
+    </Class>
+    <Class name="com.android.gallery3d.app.AlbumSetPage" x="-225" y="698">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.SlotView"
+            endpointName="mSlotView" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.ui.AlbumSetSlotRenderer"
+            endpointName="mAlbumSetView" kind="Simple"/>
+        <Association
+            destinationClassName="com.android.gallery3d.app.AlbumSetPage.MyDetailsSource"
+            endpointName="mDetailsSource" kind="Simple"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.AlbumSetSlotRenderer"/>
+        <Communication destinationClassName="com.android.gallery3d.ui.SlotView"/>
+    </Class>
+    <Class
+        name="com.android.gallery3d.ui.AlbumSetSlotRenderer.LabelSpec"
+        x="-524" y="574">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.android.gallery3d.ui.SlotView.SlotAnimation"
+        x="637" y="11">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+</ClassDiagram>

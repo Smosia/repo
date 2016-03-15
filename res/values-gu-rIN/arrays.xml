@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string-array name="proxy_error">
+<item>હોસ્ટ ફિલ્ડ ખાલી રહી શકશે નહીં</item>
+<item>પોર્ટ ક્ષેત્ર ખાલી હોઇ શકે નહિ</item>
+<item>અમાન્ય હોસ્ટ</item>
+<item>અમાન્ય પોર્ટ</item>
+</string-array>
+<string-array name="text_font">
+<item>મૂળભૂત</item>
+<item>મોનો</item>
+<item>સાન્સ સેરીફ</item>
+<item>શેરીફ</item>
+</string-array>
+</resources>

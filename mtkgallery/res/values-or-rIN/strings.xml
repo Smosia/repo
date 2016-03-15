@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">"ଫର୍ମାଟ୍ ବାଛନ୍ତୁ"</string>
+<string name="m_share_format_image">"ଫଟୋ"</string>
+<string name="m_share_format_video">"ଭିଡିଓ"</string>
+<string name="m_generating_tip">"ଭିଡିଓ ପ୍ରସ୍ତୁତ କରୁଛି..."</string>
+<string name="m_generate_video_fail">"ଉତ୍ପନ୍ନ ଭିଡିଓ କରିବାକୁ ବିଫଳ ହୋଇଛି"</string>
+<string name="m_generating_gif_tip">"Gif ପ୍ରସ୍ତୁତ କରୁଛି..."</string>
+<string name="m_generate_gif_fail">"ଉତ୍ପନ୍ନ Gif" କରିବାକୁ ବିଫଳ ହୋଇଛି"</string>
+<string name="m_share_limit">300ରୁ ଅଧିକ ଫାଇଲ୍‌ ଅଂଶୀଦାର କରିପାରିବେ ନାହିଁ।</string>
+<string name="m_demo_off">ଡେମୋ ଅଫ୍</string>
+<string name="m_vertical_demo">ଭୂଲମ୍ବ ଡେମୋ</string>
+<string name="m_horizontal_demo">ଭୂସମାନ୍ତର ଡେମୋ</string>
+<string name="m_storage_not_enough">"ଷ୍ଟୋରେଜରେ ପର୍ଯ୍ୟାପ୍ତ ସ୍ପେସ୍ ନାହିଁ।"</string>
+<string name="m_saving_image"><xliff:g id="album_name">%1$s</xliff:g> କୁ ଫଟୋ ସଞ୍ଚୟ କରୁଛି \u2026</string>
+<string name="m_drm_protected_warning1">"କପି-ସୁରକ୍ଷିତ ହୋଇଥିବା ବିଷୟବସ୍ତୁ,"</string>
+<string name="m_drm_protected_warning2">"ଫୋନରେ ଏହା ଦେଖିବାକୁ,"</string>
+<string name="m_wfd_protected_warning">"ଦୟାକରି ୱେୟାରଲେସ୍ ପ୍ରଦର୍ଶନ ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ।"</string>
+<string name="m_smb_protected_warning">"ଦୟାକରି Smartbookରୁ ଆପଣଙ୍କ ଫୋନ୍ ଅଣପ୍ଲଗ୍‌ କରନ୍ତୁ।"</string>
+<string name="m_hdmi_protected_warning">"ଦୟାକରି HDMI ସହ ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ।"</string>
+<string name="m_dc_open">“DynC ଅନ୍‌”</string>
+<string name="m_dc_close">“DynC ଅଫ୍”</string>
+</resources>

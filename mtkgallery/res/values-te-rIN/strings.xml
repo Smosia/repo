@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">ఫార్మాట్ను ఎంచుకోండి</string>
+<string name="m_share_format_image">పిక్చర్</string>
+<string name="m_share_format_video">వీడియో</string>
+<string name="m_generating_tip">వీడియోను జెనరేట్ చేస్తుంది</string>
+<string name="m_generate_video_fail">వీడియోను రూపొందించడంలో విఫలమైంది</string>
+<string name="m_generating_gif_tip">జిఫ్ని జెనరేట్ చేస్తుంది</string>
+<string name="m_generate_gif_fail">జిఫ్ రూపొందించడంలో విఫలమైంది</string>
+<string name="m_share_limit">300 కంటే ఎక్కువ ఫైళ్లను షేర్ చేయలేరు.</string>
+<string name="m_demo_off">డెమోను ఆఫ్ చేయండి</string>
+<string name="m_vertical_demo">వర్టికల్ డెమో</string>
+<string name="m_horizontal_demo">క్షితిజసమాంతర డెమో</string>
+<string name="m_storage_not_enough">స్టోరేజ్ కు తగినంత స్థలం లేదు</string>
+<string name="m_saving_image">చిత్రం సేవ్ <xliff:g id="album_name">%1$s</xliff:g> కు అవుతుంది\u2026</string>
+<string name="m_drm_protected_warning1">కంటెంట్ కాపీ సురక్షితం చేయబడింది</string>
+<string name="m_drm_protected_warning2">ఫోన్ పైన చూడటానికి</string>
+<string name="m_wfd_protected_warning">దయచేసి వైర్లెస్ డిస్ప్లే ను డిస్కనెక్ట్ చేయండి</string>
+<string name="m_smb_protected_warning">దయచేసి స్మార్ట్ బుక్ నుండి మీ ఫోన్ను ఆన్‌ప్లగ్ చేయండి</string>
+<string name="m_hdmi_protected_warning">దయచేసి HDMI తో డిస్కనెక్ట్ చేయండి</string>
+<string name="m_dc_open">"DynC ON"</string>
+<string name="m_dc_close">"DynC OFF"</string>
+</resources>

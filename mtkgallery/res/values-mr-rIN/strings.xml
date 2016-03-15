@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">फॉरमॅट निवडा</string>
+<string name="m_share_format_image">फोटो</string>
+<string name="m_share_format_video">व्हिडिओ</string>
+<string name="m_generating_tip">व्हिडियो निर्माण करीत आहे</string>
+<string name="m_generate_video_fail">व्हिडियो निर्माण करण्यात अयशस्वीता आली</string>
+<string name="m_generating_gif_tip">Gif निर्माण करीत आहे</string>
+<string name="m_generate_gif_fail">Gif निर्माण करण्यात अयशस्वीता आली</string>
+<string name="m_share_limit">300 पेक्षा अधिक फाईल्स शेअर करू शकणार नाही.</string>
+<string name="m_demo_off">डेमो ऑफ आहे</string>
+<string name="m_vertical_demo">उभा डेमो</string>
+<string name="m_horizontal_demo">आडवा डेमो</string>
+<string name="m_storage_not_enough">स्टोरेजमध्ये पुरेशी जागा नाही आहे</string>
+<string name="m_saving_image"><xliff:g id="album_name">%1$s</xliff:g> मध्ये चित्र सेव्ह करत आहे\u2026</string>
+<string name="m_drm_protected_warning1">आशय कॉपी-संरक्षित आहे</string>
+<string name="m_drm_protected_warning2">या फोनवर पाहण्यासाठी</string>
+<string name="m_wfd_protected_warning">कृपया वायरलेस डिस्प्ले डिस्कनेक्ट करा</string>
+<string name="m_smb_protected_warning">कृपया तुमचा फोन स्मार्टबुकमधून अनप्लग करा</string>
+<string name="m_hdmi_protected_warning">कृपया HDMI सह डिस्कनेक्ट करा</string>
+<string name="m_dc_open">"DynC ON"</string>
+<string name="m_dc_close">"DynC OFF"</string>
+</resources>

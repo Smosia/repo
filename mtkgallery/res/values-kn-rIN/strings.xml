@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">ಫಾರ್ಮ್ಯಾಟ್ ಆಯ್ಕೆ ಮಾಡಿ</string>
+<string name="m_share_format_image">ಚಿತ್ರ</string>
+<string name="m_share_format_video">ವೀಡಿಯೋ</string>
+<string name="m_generating_tip">ವಿಡಿಯೊ ರಚಿಸಲಾಗುತ್ತದೆ</string>
+<string name="m_generate_video_fail">ವಿಡಿಯೊ ರಚಿಸುವುದು ವಿಫಲಗೊಂಡಿದೆ</string>
+<string name="m_generating_gif_tip">Gif ರಚಿಸಲಾಗುತ್ತದೆ</string>
+<string name="m_generate_gif_fail">Gif ರಚಿಸುವುದು ವಿಫಲಗೊಂಡಿದೆ</string>
+<string name="m_share_limit">300 ಗಿಂತ ಹೆಚ್ಚು ಫೈಲ್ಗಳನ್ನು ಶೇರ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ.</string>
+<string name="m_demo_off">ಡೆಮೊ ಆಫ್ ಆಗಿದೆ</string>
+<string name="m_vertical_demo">ವರ್ಟಿಕಲ್‌ ಡೆಮೋ</string>
+<string name="m_horizontal_demo">ಅಡ್ಡ ಡೆಮೊ</string>
+<string name="m_storage_not_enough">ಸ್ಟೋರೇಜ್‌ನಲ್ಲಿ ಸಾಕಷ್ಟು ಮೆಮೊರಿ ಇಲ್ಲ</string>
+<string name="m_saving_image"><xliff:g id="album_name">%1$s</xliff:g> ಗೆ ಚಿತ್ರ ಉಳಿಸುವಿಕೆ\u2026</string>
+<string name="m_drm_protected_warning1">ಕಂಟೆಂಟ್‌ ನಕಲು ಮಾಡುವುದರಿಂದ ರಕ್ಷಣೆ ಹೊಂದಿದೆ</string>
+<string name="m_drm_protected_warning2">ಫೋನ್‌ನ ಮೇಲೆ ನೋಡಲು</string>
+<string name="m_wfd_protected_warning">ವೈರ್ಲೆಸ್‌ ಡಿಸ್‌ಪ್ಲೇಯನ್ನು ದಯವಿಟ್ಟು ಡಿಸ್ಕನೆಕ್ಟ್‌ ಮಾಡಿ</string>
+<string name="m_smb_protected_warning">ಸ್ಮಾರ್ಟ್‌ ಬುಕ್‌ನಿಂದ ದಯವಿಟ್ಟು ನಿಮ್ಮ ಫೋನ್‌ ಅನ್‌ಪ್ಲಗ್‌ ಮಾಡಿ</string>
+<string name="m_hdmi_protected_warning">ದಯವಿಟ್ಟು HDMI ಜೊತೆ ಡಿಸ್‌ಕನೆಕ್ಟಾಗಿ</string>
+<string name="m_dc_open">"DynC ON"</string>
+<string name="m_dc_close">"DynC OFF"</string>
+</resources>

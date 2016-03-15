@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">ਫਾਰਮੇਟ ਚੁਣੋ"</string>
+<string name="m_share_format_image">"ਫੋਟੋ"</string>
+<string name="m_share_format_video">"ਵੀਡੀਓ"</string>
+<string name="m_generating_tip">ਵੀਡੀਓ ਬਣਾ ਰਿਹਾ ਹੈ..."</string>
+<string name="m_generate_video_fail">"ਵੀਡੀਓ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ ਰਿਹਾ"</string>
+<string name="m_generating_gif_tip">"Gif ਬਣਾ ਰਿਹਾ ਹੈ..."</string>
+<string name="m_generate_gif_fail">"Gif ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ ਰਿਹਾ"</string>
+<string name="m_share_limit">300 ਤੋਂ ਜ਼ਿਆਦਾ ਫਾਇਲਸ ਵੰਡ ਨਹੀਂ ਸਕਦੇ</string>
+<string name="m_demo_off">ਡੇਮੋ ਬੰਦ</string>
+<string name="m_vertical_demo">ਵਰਟੀਕਲ ਡੇਮੋ</string>
+<string name="m_horizontal_demo">ਖਿਤਿਜੀ ਡੇਮੋ</string>
+<string name="m_storage_not_enough">"ਸਟੋਰੇਜ ਵਿੱਚ ਸਮਰੱਥ ਜਗ੍ਹਾ ਨਹੀਂ ਹੈ।"</string>
+<string name="m_saving_image"><xliff:g id="album_name">%1$s</xliff:g> ਲਈ ਤਸਵੀਰ ਸੇਵ ਕਰ ਰਿਹਾ ਹੈ\u2026</string>
+<string name="m_drm_protected_warning1">"ਸਮਗਰੀ ਕੌਪੀ ਰਾਖਵਾਂ ਹੈ,"</string>
+<string name="m_drm_protected_warning2">"ਇਸਨੂੰ ਫੋਨ ਤੇ ਦੇਖਣ ਲਈ,"</string>
+<string name="m_wfd_protected_warning">"ਕਿਰਪਾ ਵਾਯਰਲੈਸ ਡਿਸਪਲੇ ਨੂੰ ਹਟਾ ਦਿਓ।"</string>
+<string name="m_smb_protected_warning">"ਕਿਰਪਾ ਸਮਾਰਟਬੁਕ ਤੋਂ ਆਪਣੇ ਫੋਨ ਨੂੰ ਅਨਪਲਗ ਕਰੋ।"</string>
+<string name="m_hdmi_protected_warning">"ਕਿਰਪਾ HDMI ਤੋਂ ਹਟਾ ਦਿਓ।"</string>
+<string name="m_dc_open">"DynC ਚਾਲੂ"</string>
+<string name="m_dc_close">"DynC ਬੰਦ"</string>
+</resources>

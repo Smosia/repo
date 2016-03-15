@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string name="m_share_format_choose_title">வடிவமைப்பை தேர்வு செய்யவும்</string>
+<string name="m_share_format_image">பிக்சர்</string>
+<string name="m_share_format_video">வீடியோ</string>
+<string name="m_generating_tip">வீடியோவை உருவாக்குகிறது</string>
+<string name="m_generate_video_fail">வீடியோ உருவாக்குவதில் தோல்வியடைந்தது</string>
+<string name="m_generating_gif_tip">உருவாக்குகிறது Gif</string>
+<string name="m_generate_gif_fail">Gif உருவாக்குவதில் தோல்வியடைந்தது</string>
+<string name="m_share_limit">அதிகமாக 300 கோப்புகளை பகிரமுடியாது.</string>
+<string name="m_demo_off">டெமோ ஆஃப்</string>
+<string name="m_vertical_demo">செங்குத்து டெமோ</string>
+<string name="m_horizontal_demo">சமதள டெமோ</string>
+<string name="m_storage_not_enough">சேமிப்பில் போதுமான இடம் இல்லை</string>
+<string name="m_saving_image"><xliff:g id="album_name">%1$s</xliff:g> படம் சேமிக்கிறது\u2026</string>
+<string name="m_drm_protected_warning1">இந்த உள்ளடக்கம் நகல்-பாதுகாப்பு செய்யப்பட்டுள்ளது</string>
+<string name="m_drm_protected_warning2">இதை போனில் காண</string>
+<string name="m_wfd_protected_warning">தயவுசெய்து கம்பி இல்லாத காட்சியை துண்டிக்கவும்</string>
+<string name="m_smb_protected_warning">ஸ்மார்ட்புக்கில் இருந்து தயவுசெய்து உங்களுடைய போனைப் பித்தேடுக்கவும்</string>
+<string name="m_hdmi_protected_warning">தயவுசெய்து ஏச்டிஎம் உடன் துண்டிக்கவும்</string>
+<string name="m_dc_open">"DynC ON"</string>
+<string name="m_dc_close">"DynC OFF"</string>
+</resources>

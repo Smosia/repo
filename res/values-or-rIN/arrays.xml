@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<string-array name="proxy_error">
+<item>ଆୟୋଜନ ଫିଲ୍ଡ ଶୂନ୍ୟ ହୋଇପାରିବ ନାହିଁ</item>
+<item>ପୋର୍ଟ ଫିଲ୍ଡ ଶୂନ୍ୟ ହୋଇପାରିବ ନାହିଁ</item>
+<item>ଅବୈଧ ଆୟୋଜନ</item>
+<item>ଅବୈଧ ପୋର୍ଟ</item>
+</string-array>
+<string-array name="text_font">
+<item>ଡିଫଲ୍ଟ</item>
+<item>ମୋନୋ</item>
+<item>Sans Serif</item>
+<item>ସେରିଫ୍</item>
+</string-array>
+</resources>
