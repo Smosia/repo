@@ -79,4 +79,6 @@ proguard/
 
 # Temp files for KDE and other Editor's 
 *~
-
+#mtk related 
+jni/
+jni*/
