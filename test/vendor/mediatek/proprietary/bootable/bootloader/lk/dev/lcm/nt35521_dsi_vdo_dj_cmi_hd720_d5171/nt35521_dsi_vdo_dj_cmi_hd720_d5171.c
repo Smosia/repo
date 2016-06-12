@@ -1,0 +1,491 @@
+#ifndef BUILD_LK
+#include <linux/string.h>
+#include <mach/mt_gpio.h>
+#else
+#include <platform/mt_gpio.h>
+#endif
+
+#include "lcm_drv.h"
+// ---------------------------------------------------------------------------
+//  Local Constants
+// ---------------------------------------------------------------------------
+#include <cust_adc.h>
+#define MIN_VOLTAGE (0)
+#define MAX_VOLTAGE (200)
+
+
+#define FRAME_WIDTH  										(720)
+#define FRAME_HEIGHT 										(1280)
+
+#define REGFLAG_DELAY             							0xFE
+#define REGFLAG_END_OF_TABLE      							0xFFE   // END OF REGISTERS MARKER
+
+// ---------------------------------------------------------------------------
+//  Local Variables
+// ---------------------------------------------------------------------------
+
+static LCM_UTIL_FUNCS lcm_util = {0};
+
+#define SET_RESET_PIN(v)    (lcm_util.set_reset_pin((v)))
+
+#define UDELAY(n) (lcm_util.udelay(n))
+#define MDELAY(n) (lcm_util.mdelay(n))
+
+#ifndef BUILD_LK
+extern atomic_t ESDCheck_byCPU; 
+#endif
+// ---------------------------------------------------------------------------
+//  Local Functions
+// ---------------------------------------------------------------------------
+#define dsi_set_cmdq_V3(para_tbl,size,force_update)        	lcm_util.dsi_set_cmdq_V3(para_tbl,size,force_update)
+#define dsi_set_cmdq_V2(cmd, count, ppara, force_update)	lcm_util.dsi_set_cmdq_V2(cmd, count, ppara, force_update)
+#define dsi_set_cmdq(pdata, queue_size, force_update)		lcm_util.dsi_set_cmdq(pdata, queue_size, force_update)
+#define wrtie_cmd(cmd)									lcm_util.dsi_write_cmd(cmd)
+#define write_regs(addr, pdata, byte_nums)				lcm_util.dsi_write_regs(addr, pdata, byte_nums)
+#define read_reg											lcm_util.dsi_read_reg()
+#define read_reg_v2(cmd, buffer, buffer_size)			lcm_util.dsi_dcs_read_lcm_reg_v2(cmd, buffer, buffer_size)
+
+extern int IMM_GetOneChannelValue(int dwChannel, int data[4], int* rawdata);
+extern void dsi_enter_hs(bool enter);
+
+static struct LCM_setting_table {
+    unsigned cmd;
+    unsigned char count;
+    unsigned char para_list[64];
+};
+
+
+static struct LCM_setting_table lcm_initialization_setting[] = {
+	
+	/*
+	Note :
+
+	Data ID will depends on the following rule.
+	
+		count of parameters > 1	=> Data ID = 0x39
+		count of parameters = 1	=> Data ID = 0x15
+		count of parameters = 0	=> Data ID = 0x05
+
+	Structure Format :
+
+	{DCS command, count of parameters, {parameter list}}
+	{REGFLAG_DELAY, milliseconds of time, {}},
+
+	...
+
+	Setting ending by predefined flag
+	
+	{REGFLAG_END_OF_TABLE, 0x00, {}}
+	*/
+
+//DCS write ,no parameter  Data type:05
+//DCS write ,1  parameter  Data type:15
+//DCS write ,long Write    Data type:39
+{0xFF,4,{0xAA,0x55,0x25,0x01}},
+{0x6F,1,{0x16}},
+{0xF7,1,{0x10}},
+{0xFF,4,{0xAA,0x55,0x25,0x00}}, 
+
+{0xFF,4,{0xAA,0x55,0xA5,0x80}}, 
+{0x6F,2,{0x11,0x00}}, 
+{0xF7,2,{0x20,0x00}},
+{0x6F,1,{0x06}}, 
+{0xF7,1,{0xA0}},
+{0x6F,1,{0x19}}, 
+{0xF7,1,{0x12}}, 
+{0x6F,1,{0x02}}, 
+{0xF7,1,{0x47}}, 
+{0x6F,1,{0x17}}, 
+{0xF4,1,{0x70}}, 
+{0x6F,1,{0x01}}, 
+{0xF9,1,{0x46}}, 
+{0xF0,5,{0x55,0xAA,0x52,0x08,0x00}}, 
+{0xBD,5,{0x01,0xA0,0x10,0x10,0x01}}, 
+{0xB8,4,{0x01,0x02,0x0C,0x02}}, 
+{0xBB,2,{0x11,0x11}}, 
+{0xBC,2,{0x00,0x00}}, 
+{0xB6,1,{0x08}}, 
+{0xC8,1,{0x80}}, 
+{0xD9,2,{0x01,0x01}}, 
+{0xD4,1,{0xC7}}, 
+{0xB1,2,{0x60,0x21}},
+{0xEC,3,{0x05,0x00,0x00}},
+      
+{0xF0,5,{0x55,0xAA,0x52,0x08,0x01}}, 
+{0xB0,2,{0x09,0x09}}, 
+{0xB1,2,{0x09,0x09}}, 
+{0xBC,2,{0xA0,0x00}}, 
+{0xBD,2,{0xA0,0x00}}, 
+{0xBE,1,{0x3F}} ,
+{0xCA,1,{0x00}} ,
+{0xC0,1,{0x0C}} ,
+{0xB5,2,{0x03,0x03}}, 
+{0xB3,2,{0x19,0x19}},      
+{0xB4,2,{0x19,0x19}},      
+{0xB9,2,{0x26,0x26}},      
+{0xBA,2,{0x24,0x24}},      
+{0xF0,5,{0x55,0xAA,0x52,0x08,0x02}},  
+{0xEE,1,{0x01}},                                                                                 
+// {0xB0,16,{0x00,0x43,0x00,0x4A,0x00,0x58,0x00,0x66,0x00,0x72,0x00,0x87,0x00,0x9B,0x00,0xBE }},
+// {0xB1,16,{0x00,0xDE,0x01,0x15,0x01,0x42,0x01,0x8A,0x01,0xC7,0x01,0xC8,0x02,0x01,0x02,0x41 }},
+// {0xB2,16,{0x02,0x66,0x02,0xA0,0x02,0xC5,0x02,0xFB,0x03,0x1E,0x03,0x47,0x03,0x69,0x03,0x8B }},
+// {0xB3,4,{0x03,0xB5,0x03,0xFF }},                                                                
+ 
+ {0xB0,16,{0x00,0x00,0x00,0x16,0x00,0x41,0x00,0x62,0x00,0x7B,0x00,0x94,0x00,0xB5,0x00,0xE9}},	
+ {0xB1,16,{0x01,0x0F,0x01,0x49,0x01,0x78,0x01,0xC0,0x01,0xF8,0x01,0xFA,0x02,0x2F,0x02,0x69}},	
+ {0xB2,16,{0x02,0x8F,0x02,0xC2,0x02,0xE7,0x03,0x16,0x03,0x35,0x03,0x5E,0x03,0x78,0x03,0x99}},	
+ {0xB3,4,{0x03,0xDE,0x03,0xFF}},	
+
+ {0xC0,1,{0x04}},                                               
+ {0xF0,5,{0x55,0xAA,0x52,0x08,0x06}},
+ {0xB0,2,{0x31,0x2E}},
+ {0xB1,2,{0x10,0x12}},
+ {0xB2,2,{0x16,0x18}},
+ {0xB3,2,{0x31,0x31}},
+ {0xB4,2,{0x31,0x34}},
+ {0xB5,2,{0x34,0x34}},
+ {0xB6,2,{0x34,0x34}},
+ {0xB7,2,{0x34,0x34}},
+ {0xB8,2,{0x33,0x2D}},
+ {0xB9,2,{0x00,0x02}},
+ {0xBA,2,{0x03,0x01}},
+ {0xBB,2,{0x2D,0x33}},
+ {0xBC,2,{0x34,0x34}},
+ {0xBD,2,{0x34,0x34}},
+ {0xBE,2,{0x34,0x34}},
+ {0xBF,2,{0x34,0x31}},
+ {0xC0,2,{0x31,0x31}},
+ {0xC1,2,{0x19,0x17}},
+ {0xC2,2,{0x13,0x11}},
+ {0xC3,2,{0x2E,0x31}},
+ {0xE5,2,{0x31,0x31}},
+ {0xC4,2,{0x31,0x2D}},
+ {0xC5,2,{0x19,0x17}},
+ {0xC6,2,{0x13,0x11}},
+ {0xC7,2,{0x31,0x31}},
+ {0xC8,2,{0x31,0x34}},
+ {0xC9,2,{0x34,0x34}},
+ {0xCA,2,{0x34,0x34}},
+ {0xCB,2,{0x34,0x34}},
+ {0xCC,2,{0x33,0x2E}},
+ {0xCD,2,{0x03,0x01}},
+ {0xCE,2,{0x00,0x02}},
+ {0xCF,2,{0x2E,0x33}},
+ {0xD0,2,{0x34,0x34}},
+ {0xD1,2,{0x34,0x34}},
+ {0xD2,2,{0x34,0x34}},
+ {0xD3,2,{0x34,0x31}},
+ {0xD4,2,{0x31,0x31}},
+ {0xD5,2,{0x10,0x12}},
+ {0xD6,2,{0x16,0x18}},
+ {0xD7,2,{0x2D,0x31}},
+ {0xE6,2,{0x31,0x31}},
+ {0xD8,5,{0x00,0x00,0x00,0x00,0x00}},
+ {0xD9,5,{0x00,0x00,0x00,0x00,0x00}},
+ {0xE7,1,{0x00}},
+ {0xF0,5,{0x55,0xAA,0x52,0x08,0x05}},
+ {0xED,1,{0x30}},
+ {0xB0,2,{0x17,0x06}},
+ {0xB8,1,{0x00}},
+ {0xC0,1,{0x0D}},
+ {0xC1,1,{0x0B}},
+ {0xC2,1,{0x00}},
+ {0xC3,1,{0x00}},
+ {0xC4,1,{0x84}},
+ {0xC5,1,{0x82}},
+ {0xC6,1,{0x82}},
+ {0xC7,1,{0x80}},
+ {0xC8,2,{0x0B,0x20}},
+ {0xC9,2,{0x07,0x20}},
+ {0xCA,2,{0x01,0x10}},
+ {0xCB,2,{0x01,0x10}},
+ {0xD1,5,{0x03,0x05,0x05,0x07,0x00}}, 
+ {0xD2,5,{0x03,0x05,0x09,0x03,0x00}},
+ {0xD3,5,{0x00,0x00,0x6A,0x07,0x10}},
+ {0xD4,5,{0x30,0x00,0x6A,0x07,0x10}},
+ {0xF0,5,{0x55,0xAA,0x52,0x08,0x03}},
+ {0xB0,2,{0x00,0x00}},
+ {0xB1,2,{0x00,0x00}},
+ {0xB2,5,{0x05,0x00,0xB8,0x00,0x00}},  
+ {0xB3,5,{0x05,0x00,0xB8,0x00,0x00}},  
+ {0xB4,5,{0x05,0x00,0xB8,0x00,0x00}},  
+ {0xB5,5,{0x05,0x00,0xB8,0x00,0x00}},  
+ {0xB6,5,{0x02,0x00,0xB8,0x00,0x00}},  
+ {0xB7,5,{0x02,0x00,0xB8,0x00,0x00}},  
+ {0xB8,5,{0x02,0x00,0xB8,0x00,0x00}},  
+ {0xB9,5,{0x02,0x00,0xB8,0x00,0x00}},  
+ {0xBA,5,{0x53,0x00,0xB8,0x00,0x00}},  
+ {0xBB,5,{0x53,0x00,0xB8,0x00,0x00}},  
+ {0xBC,5,{0x53,0x00,0xB8,0x00,0x00}},  
+ {0xBD,5,{0x53,0x00,0xB8,0x00,0x00}},  
+ {0xC4,1,{0x60}},          
+ {0xC5,1,{0x40}},
+ {0xC6,1,{0x64}},
+ {0xC7,1,{0x44}},
+ {0x6F,1,{0x11}},
+ {0xF3,1,{0x01}},
+
+
+
+
+  {0x11,1,{0x00}},
+	{REGFLAG_DELAY, 120, {}},
+  {0x29,1,{0x00}},
+
+//0xF0,0x55,0xAA,0x52,0x08,0x00
+//0xEE,0x87,0x78,0x02,0x40
+//0xEF,0x00,0x02,0x00
+
+
+};
+
+// ---------------------------------------------------------------------------
+//  LCM Driver Implementations
+// ---------------------------------------------------------------------------
+static void push_table(struct LCM_setting_table *table, unsigned int count, unsigned char force_update)
+{
+	unsigned int i;
+
+    for(i = 0; i < count; i++)
+	{
+		unsigned cmd;
+		cmd = table[i].cmd;
+		
+		switch (cmd)
+		{
+			case REGFLAG_DELAY :
+				MDELAY(table[i].count);
+				break;
+
+				case REGFLAG_END_OF_TABLE :
+				break;
+				
+			default:
+				dsi_set_cmdq_V2(cmd, table[i].count, table[i].para_list, force_update);
+		}
+	}
+}
+static void lcm_set_util_funcs(const LCM_UTIL_FUNCS *util)
+{
+    memcpy(&lcm_util, util, sizeof(LCM_UTIL_FUNCS));
+}
+
+
+static void lcm_get_params(LCM_PARAMS *params)
+{
+    memset(params, 0, sizeof(LCM_PARAMS));
+
+    params->type   = LCM_TYPE_DSI;
+    params->width  = FRAME_WIDTH;
+    params->height = FRAME_HEIGHT;
+
+#if (LCM_DSI_CMD_MODE)
+		params->dsi.mode   = CMD_MODE;
+#else
+		params->dsi.mode   = SYNC_PULSE_VDO_MODE; //SYNC_PULSE_VDO_MODE;//BURST_VDO_MODE; 
+#endif
+
+
+    // DSI
+    /* Command mode setting */
+    params->dsi.LANE_NUM				= LCM_THREE_LANE;
+
+    params->dsi.data_format.color_order = LCM_COLOR_ORDER_RGB;
+    params->dsi.data_format.trans_seq   = LCM_DSI_TRANS_SEQ_MSB_FIRST;
+    params->dsi.data_format.padding     = LCM_DSI_PADDING_ON_LSB;
+    params->dsi.data_format.format      = LCM_DSI_FORMAT_RGB888;
+
+    params->dsi.packet_size=256;
+    params->dsi.PS=LCM_PACKED_PS_24BIT_RGB888;
+
+    params->dsi.vertical_sync_active				= 8;
+    params->dsi.vertical_backporch					= 14;
+    params->dsi.vertical_frontporch					= 20;
+    params->dsi.vertical_active_line				= FRAME_HEIGHT;
+
+    params->dsi.horizontal_sync_active				= 12;
+    params->dsi.horizontal_backporch				= 110;
+    params->dsi.horizontal_frontporch				= 110;
+    params->dsi.horizontal_active_pixel				= FRAME_WIDTH;
+
+    params->dsi.PLL_CLOCK= 301;
+    params->dsi.ssc_disable = 1;
+	params->dsi.esd_check_enable = 1;
+	params->dsi.customization_esd_check_enable = 1;
+	params->dsi.lcm_esd_check_table[0].cmd          = 0x0a;
+	params->dsi.lcm_esd_check_table[0].count        = 1;
+	params->dsi.lcm_esd_check_table[0].para_list[0] = 0x9c;
+}
+
+
+static void lcm_init(void)
+{
+
+    lcm_util.set_gpio_out(GPIO_LCD_BIAS_ENP_PIN, GPIO_OUT_ONE);
+	MDELAY(12);
+    lcm_util.set_gpio_out(GPIO_LCD_BIAS_ENN_PIN, GPIO_OUT_ONE);
+	MDELAY(40);
+  
+    SET_RESET_PIN(1);
+    SET_RESET_PIN(0);
+    MDELAY(10);
+    SET_RESET_PIN(1);
+    MDELAY(20);
+
+    push_table(lcm_initialization_setting, sizeof(lcm_initialization_setting) / sizeof(struct LCM_setting_table), 1);
+}
+
+static void lcm_suspend(void)
+{
+	unsigned int  data_array[32];
+	data_array[0] = 0x00621500; 
+	dsi_set_cmdq(&data_array, 1, 1);
+  data_array[0] = 0x00280500;   
+	dsi_set_cmdq(&data_array, 1, 1);
+	MDELAY(120);
+		
+	data_array[0] = 0x00100500;   
+	dsi_set_cmdq(&data_array, 1, 1);
+	MDELAY(10);
+    lcm_util.set_gpio_out(GPIO_LCD_BIAS_ENN_PIN, GPIO_OUT_ZERO);
+	MDELAY(12);
+	lcm_util.set_gpio_out(GPIO_LCD_BIAS_ENP_PIN, GPIO_OUT_ZERO);
+	MDELAY(12); 
+}
+
+
+
+static void lcm_resume(void)
+{
+    lcm_init();
+}
+
+
+static void lcm_update(unsigned int x, unsigned int y,
+                       unsigned int width, unsigned int height)
+{
+	unsigned int x0 = x;
+	unsigned int y0 = y;
+	unsigned int x1 = x0 + width - 1;
+	unsigned int y1 = y0 + height - 1;
+
+	unsigned char x0_MSB = ((x0>>8)&0xFF);
+	unsigned char x0_LSB = (x0&0xFF);
+	unsigned char x1_MSB = ((x1>>8)&0xFF);
+	unsigned char x1_LSB = (x1&0xFF);
+	unsigned char y0_MSB = ((y0>>8)&0xFF);
+	unsigned char y0_LSB = (y0&0xFF);
+	unsigned char y1_MSB = ((y1>>8)&0xFF);
+	unsigned char y1_LSB = (y1&0xFF);
+
+	unsigned int data_array[16];
+
+	data_array[0]= 0x00053902;
+	data_array[1]= (x1_MSB<<24)|(x0_LSB<<16)|(x0_MSB<<8)|0x2a;
+	data_array[2]= (x1_LSB);
+	data_array[3]= 0x00053902;
+	data_array[4]= (y1_MSB<<24)|(y0_LSB<<16)|(y0_MSB<<8)|0x2b;
+	data_array[5]= (y1_LSB);
+	data_array[6]= 0x002c3909;
+
+	dsi_set_cmdq(&data_array, 7, 0);
+
+}
+
+static unsigned int lcm_compare_id(void)
+{
+	int array[4];
+	char buffer[5];
+	int id=0;
+
+	SET_RESET_PIN(1);
+	MDELAY(20);
+	SET_RESET_PIN(0);
+	MDELAY(20);
+	SET_RESET_PIN(1);
+	MDELAY(150);
+
+	array[0] = 0x00033700;// read id return two byte,version and id
+	dsi_set_cmdq(array, 1, 1);
+	read_reg_v2(0x04, buffer, 3);
+	id = buffer[1]; //we only need ID
+
+	
+   #ifdef BUILD_LK
+		printf("luxiaofeng %s \n", __func__);
+		printf("%s id = 0x%08x \n", __func__, id);
+	#else
+		printk("luxiaofeng %s \n", __func__);
+		printk("%s id = 0x%08x \n", __func__, id);
+	
+   #endif
+	 
+  	return (0x80 == id)?1:0;
+}
+
+static unsigned int rgk_lcm_compare_id(void)
+{
+    int data[4] = {0,0,0,0};
+    int res = 0;
+    int rawdata = 0;
+    int lcm_vol = 0;
+
+#ifdef AUXADC_LCM_VOLTAGE_CHANNEL
+    res = IMM_GetOneChannelValue(AUXADC_LCM_VOLTAGE_CHANNEL,data,&rawdata);
+    if(res < 0)
+    { 
+	#ifdef BUILD_LK
+	printf("[adc_uboot]: get data error\n");
+	#endif
+	return 0;
+		   
+    }
+#endif
+
+    lcm_vol = data[0]*1000+data[1]*10;
+
+#ifdef BUILD_LK
+	printf("[adc_uboot]: lcm_vol= %d\n",lcm_vol);
+#else
+	printk("[adc_kernel]: lcm_vol= %d\n",lcm_vol);
+#endif
+    if (lcm_compare_id())
+    {
+		return 1;
+    }
+
+    return 0;
+
+}
+
+static unsigned int lcm_ata_check(unsigned char *buffer)
+{
+#ifndef BUILD_LK
+	 int array[4];
+	 char buf[5];
+	 int id=0;
+	
+	 array[0] = 0x00033700;// read id return two byte,version and id
+	 atomic_set(&ESDCheck_byCPU,1);
+	 dsi_set_cmdq(array, 1, 1);
+	 read_reg_v2(0x04, buf, 3);
+	 atomic_set(&ESDCheck_byCPU,0);
+	 id = buf[1]; //we only need ID
+	  
+	 return (0x80 == id)?1:0;
+#else
+	return 0;
+#endif
+}
+
+LCM_DRIVER nt35521_dsi_vdo_dj_cmi_hd720_d5171_lcm_drv = 
+{
+    .name			= "nt35521_dsi_vdo_dj_cmi_hd720_d5171",
+    .set_util_funcs = lcm_set_util_funcs,
+    .get_params     = lcm_get_params,
+    .init           = lcm_init,
+    .suspend        = lcm_suspend,
+    .resume         = lcm_resume,
+  	.compare_id		= rgk_lcm_compare_id,
+    .ata_check		= lcm_ata_check,
+};
